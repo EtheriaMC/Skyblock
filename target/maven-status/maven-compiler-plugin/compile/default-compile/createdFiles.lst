@@ -10,6 +10,7 @@ xyz\etheriamc\skyblock\Main$VoidWorldGenerator.class
 io\github\thatkawaiisam\assemble\Assemble.class
 io\github\thatkawaiisam\assemble\AssembleBoardEntry.class
 io\github\thatkawaiisam\assemble\AssembleStyle.class
+xyz\etheriamc\skyblock\listeners\PlayerJoinListener.class
 io\github\thatkawaiisam\assemble\AssembleAdapter.class
 xyz\etheriamc\skyblock\commands\CommandHandler.class
 io\github\thatkawaiisam\assemble\events\AssembleBoardCreatedEvent.class

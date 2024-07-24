@@ -9,6 +9,7 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.etheriamc.skyblock.commands.CommandHandler;
 import xyz.etheriamc.skyblock.listeners.EventListener;
+import xyz.etheriamc.skyblock.listeners.PlayerJoinListener;
 import xyz.etheriamc.skyblock.managers.IslandManager;
 import xyz.etheriamc.skyblock.util.ConfigFile;
 import xyz.etheriamc.skyblock.util.adapters.BoardAdapter;
@@ -31,6 +32,7 @@ public class Main extends JavaPlugin {
         getCommand("is").setExecutor(new CommandHandler(islandManager));
 
         getServer().getPluginManager().registerEvents(new EventListener(islandManager), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
     }
 
     private void loadFiles() {
@@ -45,7 +47,9 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        islandManager.saveIslands();
+        if (islandManager != null) {
+            islandManager.saveIslands();
+        }
     }
 
     private void createVoidWorld() {
