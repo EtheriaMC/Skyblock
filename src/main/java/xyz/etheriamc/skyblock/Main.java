@@ -19,7 +19,6 @@ import java.util.Random;
 public class Main extends JavaPlugin {
     private IslandManager islandManager;
     private World islandWorld;
-
     private ConfigFile scoreboardFile;
 
     @Override
@@ -28,7 +27,6 @@ public class Main extends JavaPlugin {
         loadFiles();
         createVoidWorld();
         islandManager = new IslandManager(this, islandWorld);
-
         getCommand("is").setExecutor(new CommandHandler(islandManager));
 
         getServer().getPluginManager().registerEvents(new EventListener(islandManager), this);
@@ -37,7 +35,6 @@ public class Main extends JavaPlugin {
 
     private void loadFiles() {
         saveDefaultConfig();
-
         this.scoreboardFile = new ConfigFile(this, "scoreboard.yml");
     }
 
