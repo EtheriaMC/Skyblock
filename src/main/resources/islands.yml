@@ -1,0 +1,10 @@
+islands:
+  exampleIsland:
+    owner: "72f34805-2601-48d5-b6e6-9df479a3ded1"
+    spawnX: 100
+    spawnY: 64
+    spawnZ: 100
+    worldName: "world"
+    members:
+      - "72f34805-2601-48d5-b6e6-9df479a3ded1"
+    invited: []
