@@ -2,19 +2,26 @@ package xyz.etheriamc.skyblock;
 
 import co.aikar.commands.PaperCommandManager;
 import co.aikar.commands.CommandCompletions;
+import com.mongodb.MongoException;
 import io.github.thatkawaiisam.assemble.Assemble;
 import lombok.Getter;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.WorldType;
 import org.bukkit.generator.ChunkGenerator;
+import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.etheriamc.skyblock.acf.ACFResolver;
+import xyz.etheriamc.skyblock.database.mongo.MongoHandler;
+import xyz.etheriamc.skyblock.economy.handler.EcoHandler;
 import xyz.etheriamc.skyblock.handler.ServerHandler;
 import xyz.etheriamc.skyblock.listeners.EventListener;
 import xyz.etheriamc.skyblock.listeners.PlayerJoinListener;
 import xyz.etheriamc.skyblock.islands.IslandManager;
+import xyz.etheriamc.skyblock.profile.Profile;
+import xyz.etheriamc.skyblock.profile.ProfileHandler;
 import xyz.etheriamc.skyblock.util.ConfigFile;
 import xyz.etheriamc.skyblock.util.adapters.BoardAdapter;
 import xyz.etheriamc.skyblock.warp.Warp;
@@ -29,16 +36,26 @@ import java.util.Random;
 
 @Getter
 public class Main extends JavaPlugin {
-    @Getter private static Main instance;
-    private IslandManager islandManager;
-    private World islandWorld;
-    private ConfigFile scoreboardFile;
-    private PaperCommandManager paperCommandManager;
-    private ServerHandler serverHandler;
+    @Getter public static Main instance;
+    public IslandManager islandManager;
+    public World islandWorld;
+    public ConfigFile scoreboardFile, databaseFile;
+    public PaperCommandManager paperCommandManager;
+    public ServerHandler serverHandler;
+    public MongoHandler mongoHandler;
+    public ProfileHandler profileHandler;
 
     @Override
     public void onEnable() {
         instance = this;
+        loadFiles();
+
+        mongoHandler = new MongoHandler();
+        try {
+            mongoHandler.setupMongoDB(databaseFile.getString("mongo.uri"));
+        }catch (MongoException e) {
+            e.printStackTrace();
+        }
 
         paperCommandManager = new PaperCommandManager(this);
 
@@ -56,21 +73,22 @@ public class Main extends JavaPlugin {
         });
 
         loadOthers();
-        loadFiles();
         createVoidWorld();
 
         serverHandler = new ServerHandler();
 
         islandManager = new IslandManager(this, islandWorld);
+        profileHandler = new ProfileHandler();
 
         ACFResolver.registerAll();
-
+        registerEconomy();
         getServer().getPluginManager().registerEvents(new EventListener(islandManager), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
     }
 
     private void loadFiles() {
         saveDefaultConfig();
+        this.databaseFile = new ConfigFile(this, "database.yml");
         this.scoreboardFile = new ConfigFile(this, "scoreboard.yml");
     }
 
@@ -87,6 +105,8 @@ public class Main extends JavaPlugin {
         if (serverHandler != null) {
             serverHandler.saveWarps();
         }
+
+        mongoHandler.disconnect();
     }
 
     private void createVoidWorld() {
@@ -112,14 +132,21 @@ public class Main extends JavaPlugin {
         return paperCommandManager;
     }
 
-    public ServerHandler getServerHandler() {
-        return serverHandler;
-    }
-
     public class VoidWorldGenerator extends ChunkGenerator {
         @Override
         public byte[] generate(World world, Random random, int x, int z) {
             return new byte[65536];
+        }
+    }
+
+    public void registerEconomy() {
+        if (Bukkit.getServer().getPluginManager().isPluginEnabled("Vault")) {
+            getServer().getServicesManager().register(
+                    Economy.class,
+                    new EcoHandler(),
+                    this,
+                    ServicePriority.Highest
+            );
         }
     }
 }

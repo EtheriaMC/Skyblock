@@ -1,30 +1,3 @@
 name: SkyBlock
 version: 1.0
 main: xyz.etheriamc.skyblock.Main
-commands:
-  is:
-    description: Main command for SkyBlock
-    usage: /is <create|delete|home|setspawn|visit|invite|accept|deny|manage>
-    permission: skyblock.command
-permissions:
-  skyblock.command.invite:
-    description: Invite players / accept or deny invitations
-    default: true
-  skyblock.command.create:
-    description: Create an Island
-    default: true
-  skyblock.command.home:
-    description: Teleport user to his island spawn
-    default: true
-  skyblock.command.visit:
-    description: Teleport to the specified player island
-    default: true
-  skyblock.command.setspawn:
-    description: Change the island spawn to user position
-    default: true
-  skyblock.event.break:
-    description: Break Blocks on a other Island without Trust
-    default: op
-  skyblock.event.place:
-    description: Place Blocks on a other Island without Trust
-    default: op
