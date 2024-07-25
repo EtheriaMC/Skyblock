@@ -7,12 +7,37 @@ Island management - Could do with a recode tbh
 Scoreboard - Configurable
 
 # Commands
-/is create <name> - Create a new island.
-/is delete <name> - Delete your island.
-/is manage - Manage your island. (isn't implemented as of right now, this is jordans job)
-/is setspawn - Set your islands spawn location.
-/is home - Teleport to your island home.
-/is visit <player> - Visit another player's island.
-/is invite <player> - Invite a player to your island.
-/is accept <player> - Accept an island invitation.
-/is deny <player> - Deny an island invitation.
+- /is create <name> - Create a new island.
+- /is delete <name> - Delete your island.
+- /is manage - Manage your island. (isn't implemented as of right now, this is jordans job)
+- /is setspawn - Set your islands spawn location.
+- /is home - Teleport to your island home.
+- /is visit <player> - Visit another player's island.
+- /is invite <player> - Invite a player to your island.
+- /is accept <player> - Accept an island invitation.
+- /is deny <player> - Deny an island invitation.
+
+# TODO - ASSIGN YOUR SELF TO TASKS
+~~Add islands~~
+~~Add island generation~~
+~~Add scoreboard~~
+Add tablist - Using [NoSequels Tab API](https://github.com/NoSequel/TabAPI)
+Add Economy
+Add Island borders
+Add Island management
+Add Shops
+Add Leaderboards
+Add Tokens
+Add Minions
+Add special items
+McMMO Support
+Add Farming / Mob / Mining / Fishing tiers
+Add Island upgrades
+Add Lottery
+Add Pets
+Add Challenges
+Add Bounties
+Add Auctions
+Add Bosses (prob not)
+Add Player warps
+Add Ore generators
