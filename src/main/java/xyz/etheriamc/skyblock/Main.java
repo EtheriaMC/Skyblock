@@ -10,10 +10,9 @@ import org.bukkit.WorldType;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.etheriamc.skyblock.acf.ACFResolver;
-import xyz.etheriamc.skyblock.commands.island.IslandCommands;
 import xyz.etheriamc.skyblock.listeners.EventListener;
 import xyz.etheriamc.skyblock.listeners.PlayerJoinListener;
-import xyz.etheriamc.skyblock.managers.IslandManager;
+import xyz.etheriamc.skyblock.islands.IslandManager;
 import xyz.etheriamc.skyblock.util.ConfigFile;
 import xyz.etheriamc.skyblock.util.adapters.BoardAdapter;
 

@@ -1,4 +1,4 @@
-package xyz.etheriamc.skyblock.managers;
+package xyz.etheriamc.skyblock.islands;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -8,7 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import xyz.etheriamc.skyblock.models.Island;
+import xyz.etheriamc.skyblock.islands.models.Island;
 
 import java.io.*;
 import java.lang.reflect.Type;

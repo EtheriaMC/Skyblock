@@ -4,7 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import xyz.etheriamc.skyblock.managers.IslandManager;
+import xyz.etheriamc.skyblock.islands.IslandManager;
 
 public class EventListener implements Listener {
     private IslandManager islandManager;

@@ -1,4 +1,4 @@
-package xyz.etheriamc.skyblock.models;
+package xyz.etheriamc.skyblock.islands.models;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

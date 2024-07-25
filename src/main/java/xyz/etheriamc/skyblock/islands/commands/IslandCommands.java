@@ -1,4 +1,4 @@
-package xyz.etheriamc.skyblock.commands.island;
+package xyz.etheriamc.skyblock.islands.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import xyz.etheriamc.skyblock.Main;
-import xyz.etheriamc.skyblock.managers.IslandManager;
+import xyz.etheriamc.skyblock.islands.IslandManager;
 import xyz.etheriamc.skyblock.util.CC;
 
 @CommandAlias("is|island")

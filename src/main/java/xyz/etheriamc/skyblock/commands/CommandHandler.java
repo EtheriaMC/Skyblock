@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import xyz.etheriamc.skyblock.managers.IslandManager;
+import xyz.etheriamc.skyblock.islands.IslandManager;
 import xyz.etheriamc.skyblock.util.CC;
 
 public class CommandHandler implements CommandExecutor {
