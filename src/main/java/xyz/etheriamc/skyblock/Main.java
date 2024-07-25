@@ -10,7 +10,11 @@ import org.bukkit.WorldType;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.etheriamc.skyblock.acf.ACFResolver;
+<<<<<<< HEAD
 import xyz.etheriamc.skyblock.commands.island.IslandCommands;
+=======
+import xyz.etheriamc.skyblock.commands.CommandHandler;
+>>>>>>> a30ef7c6041f4d3cb9952c885f3036894d0bbae9
 import xyz.etheriamc.skyblock.listeners.EventListener;
 import xyz.etheriamc.skyblock.listeners.PlayerJoinListener;
 import xyz.etheriamc.skyblock.managers.IslandManager;
@@ -21,7 +25,11 @@ import java.util.Random;
 
 @Getter
 public class Main extends JavaPlugin {
+<<<<<<< HEAD
     @Getter private static Main instance;
+=======
+    @Getter public static Main instance;
+>>>>>>> a30ef7c6041f4d3cb9952c885f3036894d0bbae9
     private IslandManager islandManager;
     private World islandWorld;
     private ConfigFile scoreboardFile;
@@ -30,6 +38,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+<<<<<<< HEAD
 
         // Initialize PaperCommandManager
         paperCommandManager = new PaperCommandManager(this);
@@ -38,6 +47,14 @@ public class Main extends JavaPlugin {
         loadOthers();
         loadFiles();
         createVoidWorld();
+=======
+        paperCommandManager = new PaperCommandManager(this);
+        ACFResolver.registerAll();
+        loadOthers();
+        loadFiles();
+        createVoidWorld();
+        islandManager = new IslandManager(this, islandWorld);
+>>>>>>> a30ef7c6041f4d3cb9952c885f3036894d0bbae9
 
         // Initialize IslandManager
         islandManager = new IslandManager(this, islandWorld);
