@@ -16,7 +16,10 @@ Scoreboard - Configurable
 - /is invite <player> - Invite a player to your island.
 - /is accept <player> - Accept an island invitation.
 - /is deny <player> - Deny an island invitation.
-
+- /warp <warp> - Warp to a set warp
+- /warps - List all the warps
+- /setwarp <name> - Create a warp
+- /delwarp <warp> - Delete a warp
 # TODO - ASSIGN YOUR SELF TO TASKS
 ~~Add islands~~
 ~~Add island generation~~
