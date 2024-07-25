@@ -19,7 +19,7 @@ public class EcoHandler implements Economy {
 
     @Override
     public String getName() {
-        return "Carbon Economy";
+        return "EtheriaMC Economy";
     }
 
     @Override
