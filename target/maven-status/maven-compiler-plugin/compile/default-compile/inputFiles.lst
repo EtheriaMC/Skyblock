@@ -1,6 +1,7 @@
-C:\Users\vifez\Desktop\Workspace\Code\Java\Plugins\- Gamemodes\Skyblock\EtheriaMC-Skyblock-1.0\src\main\java\xyz\etheriamc\skyblock\commands\CommandHandler.java
-C:\Users\vifez\Desktop\Workspace\Code\Java\Plugins\- Gamemodes\Skyblock\EtheriaMC-Skyblock-1.0\src\main\java\xyz\etheriamc\skyblock\listeners\EventListener.java
-C:\Users\vifez\Desktop\Workspace\Code\Java\Plugins\- Gamemodes\Skyblock\EtheriaMC-Skyblock-1.0\src\main\java\xyz\etheriamc\skyblock\Main.java
-C:\Users\vifez\Desktop\Workspace\Code\Java\Plugins\- Gamemodes\Skyblock\EtheriaMC-Skyblock-1.0\src\main\java\xyz\etheriamc\skyblock\managers\IslandManager.java
-C:\Users\vifez\Desktop\Workspace\Code\Java\Plugins\- Gamemodes\Skyblock\EtheriaMC-Skyblock-1.0\src\main\java\xyz\etheriamc\skyblock\models\Island.java
-C:\Users\vifez\Desktop\Workspace\Code\Java\Plugins\- Gamemodes\Skyblock\EtheriaMC-Skyblock-1.0\src\main\java\xyz\etheriamc\skyblock\util\CC.java
+/Users/jhuggins/IdeaProjects/Skyblock/src/main/java/xyz/etheriamc/skyblock/Main.java
+/Users/jhuggins/IdeaProjects/Skyblock/src/main/java/xyz/etheriamc/skyblock/commands/ACFResolver.java
+/Users/jhuggins/IdeaProjects/Skyblock/src/main/java/xyz/etheriamc/skyblock/commands/island/IslandCommands.java
+/Users/jhuggins/IdeaProjects/Skyblock/src/main/java/xyz/etheriamc/skyblock/listeners/EventListener.java
+/Users/jhuggins/IdeaProjects/Skyblock/src/main/java/xyz/etheriamc/skyblock/managers/IslandManager.java
+/Users/jhuggins/IdeaProjects/Skyblock/src/main/java/xyz/etheriamc/skyblock/models/Island.java
+/Users/jhuggins/IdeaProjects/Skyblock/src/main/java/xyz/etheriamc/skyblock/util/CC.java

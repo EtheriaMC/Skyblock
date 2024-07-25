@@ -1,8 +1,2 @@
-xyz\etheriamc\skyblock\util\CC.class
-xyz\etheriamc\skyblock\managers\IslandManager$1.class
-xyz\etheriamc\skyblock\listeners\EventListener.class
-xyz\etheriamc\skyblock\Main$VoidWorldGenerator.class
-xyz\etheriamc\skyblock\Main.class
-xyz\etheriamc\skyblock\managers\IslandManager.class
-xyz\etheriamc\skyblock\models\Island.class
-xyz\etheriamc\skyblock\commands\CommandHandler.class
+xyz/etheriamc/skyblock/commands/island/IslandCommands.class
+xyz/etheriamc/skyblock/commands/ACFResolver.class
