@@ -82,9 +82,9 @@ public class CommandHandler implements CommandExecutor {
 
         boolean success = islandManager.createIsland(player, name);
         if (success) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aIsland created successfully!"));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aIsland created successfully!"));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou already have an island or failed to create it."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou already have an island or failed to create it."));
         }
         return true;
     }
@@ -93,9 +93,9 @@ public class CommandHandler implements CommandExecutor {
         Location spawn = islandManager.getIslandSpawn(player);
         if (spawn != null) {
             player.teleport(spawn);
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aTeleported to your island!"));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aTeleported to your island!"));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou do not have an island. Create one with /is create <name>."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou do not have an island. Create one with /is create <name>."));
         }
         return true;
     }
@@ -108,7 +108,7 @@ public class CommandHandler implements CommandExecutor {
 
         Location location = player.getLocation();
         islandManager.setIslandSpawn(player, location);
-        player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aIsland spawn set to your current location."));
+        player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aIsland spawn set to your current location."));
         return true;
     }
 
@@ -127,9 +127,9 @@ public class CommandHandler implements CommandExecutor {
         Location spawn = islandManager.getIslandSpawn(targetPlayer);
         if (spawn != null) {
             player.teleport(spawn);
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aTeleported to " + targetPlayer.getName() + "'s island."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aTeleported to " + targetPlayer.getName() + "'s island."));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &c" + targetPlayer.getName() + " does not have an island."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &c" + targetPlayer.getName() + " does not have an island."));
         }
         return true;
     }
@@ -148,9 +148,9 @@ public class CommandHandler implements CommandExecutor {
 
         boolean success = islandManager.invitePlayer(player, invitee);
         if (success) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aInvitation sent to " + invitee.getName() + "."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aInvitation sent to " + invitee.getName() + "."));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cFailed to send the invitation."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cFailed to send the invitation."));
         }
         return true;
     }
@@ -169,9 +169,9 @@ public class CommandHandler implements CommandExecutor {
 
         boolean success = islandManager.acceptInvitation(player, owner);
         if (success) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aInvitation accepted."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aInvitation accepted."));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou don't have an invitation from that player."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou don't have an invitation from that player."));
         }
         return true;
     }
@@ -190,9 +190,9 @@ public class CommandHandler implements CommandExecutor {
 
         boolean success = islandManager.denyInvitation(player, owner);
         if (success) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aInvitation denied."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aInvitation denied."));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou don't have an invitation from that player."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou don't have an invitation from that player."));
         }
         return true;
     }
@@ -206,9 +206,9 @@ public class CommandHandler implements CommandExecutor {
         String targetName = args.length > 1 ? args[1] : player.getName();
         boolean success = islandManager.deleteIsland(targetName);
         if (success) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aIsland deleted."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aIsland deleted."));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cFailed to delete the island or island not found."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cFailed to delete the island or island not found."));
         }
         return true;
     }
@@ -218,7 +218,7 @@ public class CommandHandler implements CommandExecutor {
             player.sendMessage(CC.translate("&cYou do not have permission to manage islands."));
             return true;
         }
-        player.sendMessage(CC.translate("&b&lEtheriaMC &7● &eComing soon..."));
+        player.sendMessage(CC.translate("&b&lEtheriaMC &f● &eComing soon..."));
         return true;
     }
 }

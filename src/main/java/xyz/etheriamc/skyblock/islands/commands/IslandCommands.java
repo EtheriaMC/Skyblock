@@ -42,22 +42,22 @@ public class IslandCommands extends BaseCommand {
     @Description("Create a new island with a specified name.")
     public void createIsland(Player player, @Name("name") String name) {
         if (name == null || name.trim().isEmpty()) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cIsland name cannot be empty."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cIsland name cannot be empty."));
             return;
         }
 
         if (islandManager == null) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &fWhoops! An IslandManager error was found."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &fWhoops! An IslandManager error was found."));
             return;
         }
 
-        player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aCreating your island..."));
+        player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aCreating your island..."));
         Bukkit.getScheduler().runTask(Main.getInstance(), () -> {
             boolean success = islandManager.createIsland(player, name);
             if (success) {
-                player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aIsland created!"));
+                player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aIsland created!"));
             } else {
-                player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou already have an island!"));
+                player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou already have an island!"));
             }
         });
     }
@@ -66,16 +66,16 @@ public class IslandCommands extends BaseCommand {
     @Description("Teleport to your island home.")
     public void goHomeIsland(Player player) {
         if (islandManager == null) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &fWhoops! An IslandManager error was found."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &fWhoops! An IslandManager error was found."));
             return;
         }
 
         Location spawn = islandManager.getIslandSpawn(player);
         if (spawn != null) {
             player.teleport(spawn);
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aTeleported to your island!"));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aTeleported to your island!"));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou do not have an island. Create one with /is create <name>."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou do not have an island. Create one with /is create <name>."));
         }
     }
 
@@ -83,18 +83,18 @@ public class IslandCommands extends BaseCommand {
     @Description("Set your island's spawn location.")
     public void setSpawn(Player player) {
         if (islandManager == null) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &fWhoops! An IslandManager error was found."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &fWhoops! An IslandManager error was found."));
             return;
         }
 
         if (islandManager.getIsland(player) == null) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou do not have an island to set a spawn for."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou do not have an island to set a spawn for."));
             return;
         }
 
         Location location = player.getLocation();
         islandManager.setIslandSpawn(player, location);
-        player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aIsland spawn set to your current location."));
+        player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aIsland spawn set to your current location."));
     }
 
     @Subcommand("visit")
@@ -106,16 +106,16 @@ public class IslandCommands extends BaseCommand {
         }
 
         if (islandManager == null) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &fWhoops! An IslandManager error was found."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &fWhoops! An IslandManager error was found."));
             return;
         }
 
         Location spawn = islandManager.getIslandSpawn(targetPlayer);
         if (spawn != null) {
             player.teleport(spawn);
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aTeleported to " + targetPlayer.getName() + "'s island."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aTeleported to " + targetPlayer.getName() + "'s island."));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &c" + targetPlayer.getName() + " does not have an island."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &c" + targetPlayer.getName() + " does not have an island."));
         }
     }
 
@@ -128,15 +128,15 @@ public class IslandCommands extends BaseCommand {
         }
 
         if (islandManager == null) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &fWhoops! An IslandManager error was found."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &fWhoops! An IslandManager error was found."));
             return;
         }
 
         boolean success = islandManager.invitePlayer(player, targetPlayer);
         if (success) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aInvited " + targetPlayer.getName() + " to your island."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aInvited " + targetPlayer.getName() + " to your island."));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cFailed to invite " + targetPlayer.getName() + " to your island."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cFailed to invite " + targetPlayer.getName() + " to your island."));
         }
     }
 
@@ -149,15 +149,15 @@ public class IslandCommands extends BaseCommand {
         }
 
         if (islandManager == null) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &fWhoops! An IslandManager error was found."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &fWhoops! An IslandManager error was found."));
             return;
         }
 
         boolean success = islandManager.acceptInvitation(player, owner);
         if (success) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aYou have joined the island!"));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aYou have joined the island!"));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou have no pending invites from " + owner.getName() + "!"));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou have no pending invites from " + owner.getName() + "!"));
         }
     }
 
@@ -170,15 +170,15 @@ public class IslandCommands extends BaseCommand {
         }
 
         if (islandManager == null) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &fWhoops! An IslandManager error was found."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &fWhoops! An IslandManager error was found."));
             return;
         }
 
         boolean success = islandManager.denyInvitation(player, owner);
         if (success) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou have declined the invitation."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou have declined the invitation."));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou have no pending invites from " + owner.getName() + "!"));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou have no pending invites from " + owner.getName() + "!"));
         }
     }
 
@@ -186,21 +186,21 @@ public class IslandCommands extends BaseCommand {
     @Description("Delete your island.")
     public void delete(Player player) {
         if (islandManager == null) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &fWhoops! An IslandManager error was found."));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &fWhoops! An IslandManager error was found."));
             return;
         }
 
         boolean success = islandManager.deleteIsland(player);
         if (success) {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cIsland deleted!"));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cIsland deleted!"));
         } else {
-            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou do not have an island to delete!"));
+            player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cYou do not have an island to delete!"));
         }
     }
 
     @Subcommand("manage")
     @Description("Manage your island.")
     public void manage(Player player) {
-        player.sendMessage(CC.translate("&b&lEtheriaMC &7● &eComing soon..."));
+        player.sendMessage(CC.translate("&b&lEtheriaMC &f● &eComing soon..."));
     }
 }

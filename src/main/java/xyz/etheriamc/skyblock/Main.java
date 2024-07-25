@@ -1,6 +1,7 @@
 package xyz.etheriamc.skyblock;
 
 import co.aikar.commands.PaperCommandManager;
+import co.aikar.commands.CommandCompletions;
 import io.github.thatkawaiisam.assemble.Assemble;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -10,12 +11,20 @@ import org.bukkit.WorldType;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.etheriamc.skyblock.acf.ACFResolver;
+import xyz.etheriamc.skyblock.handler.ServerHandler;
 import xyz.etheriamc.skyblock.listeners.EventListener;
 import xyz.etheriamc.skyblock.listeners.PlayerJoinListener;
 import xyz.etheriamc.skyblock.islands.IslandManager;
 import xyz.etheriamc.skyblock.util.ConfigFile;
 import xyz.etheriamc.skyblock.util.adapters.BoardAdapter;
+import xyz.etheriamc.skyblock.warp.Warp;
+import xyz.etheriamc.skyblock.warp.commands.DeleteWarpCommand;
+import xyz.etheriamc.skyblock.warp.commands.SetWarpCommand;
+import xyz.etheriamc.skyblock.warp.commands.WarpCommand;
+import xyz.etheriamc.skyblock.warp.commands.WarpsCommand;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Getter
@@ -24,7 +33,8 @@ public class Main extends JavaPlugin {
     private IslandManager islandManager;
     private World islandWorld;
     private ConfigFile scoreboardFile;
-    public PaperCommandManager paperCommandManager;
+    private PaperCommandManager paperCommandManager;
+    private ServerHandler serverHandler;
 
     @Override
     public void onEnable() {
@@ -32,9 +42,24 @@ public class Main extends JavaPlugin {
 
         paperCommandManager = new PaperCommandManager(this);
 
+        paperCommandManager.registerCommand(new WarpCommand());
+        paperCommandManager.registerCommand(new SetWarpCommand());
+        paperCommandManager.registerCommand(new DeleteWarpCommand());
+        paperCommandManager.registerCommand(new WarpsCommand());
+
+        paperCommandManager.getCommandCompletions().registerCompletion("warps", c -> {
+            List<String> toReturn = new ArrayList<>();
+            for (Warp warp : getServerHandler().getWarps()) {
+                toReturn.add(warp.getName());
+            }
+            return toReturn;
+        });
+
         loadOthers();
         loadFiles();
         createVoidWorld();
+
+        serverHandler = new ServerHandler();
 
         islandManager = new IslandManager(this, islandWorld);
 
@@ -59,6 +84,9 @@ public class Main extends JavaPlugin {
         if (islandManager != null) {
             islandManager.saveIslands();
         }
+        if (serverHandler != null) {
+            serverHandler.saveWarps();
+        }
     }
 
     private void createVoidWorld() {
@@ -82,6 +110,10 @@ public class Main extends JavaPlugin {
 
     public PaperCommandManager getPaperCommandManager() {
         return paperCommandManager;
+    }
+
+    public ServerHandler getServerHandler() {
+        return serverHandler;
     }
 
     public class VoidWorldGenerator extends ChunkGenerator {
