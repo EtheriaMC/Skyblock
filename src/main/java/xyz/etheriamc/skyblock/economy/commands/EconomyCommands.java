@@ -19,7 +19,7 @@ public class EconomyCommands extends BaseCommand {
         player.sendMessage(CC.translate("&c/eco set <name> <balance> &7- Sets the balance of a player."));
         player.sendMessage(CC.translate("&c/eco reset <name> &7- Resets balance of a player."));
         player.sendMessage(CC.translate("&c/eco add <name> &7- Adds to player balance."));
-        player.sendMessage(CC.translate("&c/eco remove <name> &7- Removes from player balance."));
+        player.sendMessage(CC.translate("&c/eco remove <name> &7- Removes money from a player balance."));
         player.sendMessage(CC.translate("&7&m----------------------------------------"));
     }
 
