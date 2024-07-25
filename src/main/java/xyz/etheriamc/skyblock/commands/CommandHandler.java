@@ -1,13 +1,13 @@
 package xyz.etheriamc.skyblock.commands;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.etheriamc.skyblock.managers.IslandManager;
+import xyz.etheriamc.skyblock.util.CC;
 
 public class CommandHandler implements CommandExecutor {
     private final IslandManager islandManager;
@@ -19,7 +19,7 @@ public class CommandHandler implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "Only players can use this command.");
+            sender.sendMessage(CC.translate("&cOnly players can use this command."));
             return true;
         }
 
@@ -56,30 +56,35 @@ public class CommandHandler implements CommandExecutor {
     }
 
     private void showHelp(Player player) {
-        player.sendMessage(ChatColor.YELLOW + "Skyblock commands");
-        player.sendMessage(ChatColor.GOLD + "/is create <name>" + ChatColor.WHITE + " - Create a new island.");
-        player.sendMessage(ChatColor.GOLD + "/is home" + ChatColor.WHITE + " - Teleport to your island home.");
-        player.sendMessage(ChatColor.GOLD + "/is setspawn" + ChatColor.WHITE + " - Set your island's spawn location.");
-        player.sendMessage(ChatColor.GOLD + "/is visit <player>" + ChatColor.WHITE + " - Visit another player's island.");
-        player.sendMessage(ChatColor.GOLD + "/is invite <player>" + ChatColor.WHITE + " - Invite a player to your island.");
-        player.sendMessage(ChatColor.GOLD + "/is accept <player>" + ChatColor.WHITE + " - Accept an island invitation.");
-        player.sendMessage(ChatColor.GOLD + "/is deny <player>" + ChatColor.WHITE + " - Deny an island invitation.");
-        player.sendMessage(ChatColor.GOLD + "/is delete <name>" + ChatColor.WHITE + " - Delete an island.");
-        player.sendMessage(ChatColor.GOLD + "/is manage" + ChatColor.WHITE + " - Manage your island.");
+        player.sendMessage(CC.translate("&3&lSkyblock commands"));
+        player.sendMessage(CC.translate("&b/is create <name> &7- &fCreate a new island."));
+        player.sendMessage(CC.translate("&b/is home &7- &fTeleport to your island home."));
+        player.sendMessage(CC.translate("&b/is setspawn &7- &fSet your island's spawn location."));
+        player.sendMessage(CC.translate("&b/is visit <player> &7- &fVisit another player's island."));
+        player.sendMessage(CC.translate("&b/is invite <player> &7- &fInvite a player to your island."));
+        player.sendMessage(CC.translate("&b/is accept <player> &7- &fAccept an island invitation."));
+        player.sendMessage(CC.translate("&b/is deny <player> &7- &fDeny an island invitation."));
+        player.sendMessage(CC.translate("&b/is delete <name> &7- &fDelete an island."));
+        player.sendMessage(CC.translate("&b/is manage &7- &fManage your island."));
     }
 
     private boolean handleCreateCommand(Player player, String[] args) {
         if (args.length < 2) {
-            player.sendMessage(ChatColor.RED + "Usage: /is create <name>");
+            player.sendMessage(CC.translate("&cUsage: /is create <name>"));
             return true;
         }
 
         String name = args[1];
+        if (name == null || name.trim().isEmpty()) {
+            player.sendMessage(CC.translate("&cIsland name cannot be empty."));
+            return true;
+        }
+
         boolean success = islandManager.createIsland(player, name);
         if (success) {
-            player.sendMessage(ChatColor.GREEN + "Island created successfully!");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aIsland created successfully!"));
         } else {
-            player.sendMessage(ChatColor.RED + "You already have an island!");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou already have an island or failed to create it."));
         }
         return true;
     }
@@ -88,123 +93,132 @@ public class CommandHandler implements CommandExecutor {
         Location spawn = islandManager.getIslandSpawn(player);
         if (spawn != null) {
             player.teleport(spawn);
-            player.sendMessage(ChatColor.GREEN + "Teleported to your island!");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aTeleported to your island!"));
         } else {
-            player.sendMessage(ChatColor.RED + "You do not have an island. Create one with /is create <name>.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou do not have an island. Create one with /is create <name>."));
         }
         return true;
     }
 
     private boolean handleSetSpawnCommand(Player player) {
+        if (islandManager.getIsland(player) == null) {
+            player.sendMessage(CC.translate("&cYou do not have an island to set a spawn for."));
+            return true;
+        }
+
         Location location = player.getLocation();
         islandManager.setIslandSpawn(player, location);
-        player.sendMessage(ChatColor.GREEN + "Island spawn set to your current location.");
+        player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aIsland spawn set to your current location."));
         return true;
     }
 
     private boolean handleVisitCommand(Player player, String[] args) {
         if (args.length < 2) {
-            player.sendMessage(ChatColor.RED + "Usage: /is visit <username>");
+            player.sendMessage(CC.translate("&cUsage: /is visit <username>"));
             return true;
         }
 
         Player targetPlayer = Bukkit.getPlayer(args[1]);
         if (targetPlayer == null) {
-            player.sendMessage(ChatColor.RED + "Player not found.");
+            player.sendMessage(CC.translate("&cPlayer not found."));
             return true;
         }
 
         Location spawn = islandManager.getIslandSpawn(targetPlayer);
         if (spawn != null) {
             player.teleport(spawn);
-            player.sendMessage(ChatColor.GREEN + "Teleported to " + targetPlayer.getName() + "'s island.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aTeleported to " + targetPlayer.getName() + "'s island."));
         } else {
-            player.sendMessage(ChatColor.RED + targetPlayer.getName() + " does not have an island.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &c" + targetPlayer.getName() + " does not have an island."));
         }
         return true;
     }
 
     private boolean handleInviteCommand(Player player, String[] args) {
         if (args.length < 2) {
-            player.sendMessage(ChatColor.RED + "Usage: /is invite <player>");
+            player.sendMessage(CC.translate("&cUsage: /is invite <player>"));
             return true;
         }
 
         Player invitee = Bukkit.getPlayer(args[1]);
         if (invitee == null) {
-            player.sendMessage(ChatColor.RED + "Player not found.");
+            player.sendMessage(CC.translate("&cPlayer not found."));
             return true;
         }
 
         boolean success = islandManager.invitePlayer(player, invitee);
         if (success) {
-            player.sendMessage(ChatColor.GREEN + "Invitation sent to " + invitee.getName() + ".");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aInvitation sent to " + invitee.getName() + "."));
         } else {
-            player.sendMessage(ChatColor.RED + "You can't invite this player.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cFailed to send the invitation."));
         }
         return true;
     }
 
     private boolean handleAcceptCommand(Player player, String[] args) {
         if (args.length < 2) {
-            player.sendMessage(ChatColor.RED + "Usage: /is accept <player>");
+            player.sendMessage(CC.translate("&cUsage: /is accept <player>"));
             return true;
         }
 
         Player owner = Bukkit.getPlayer(args[1]);
         if (owner == null) {
-            player.sendMessage(ChatColor.RED + "Player not found.");
+            player.sendMessage(CC.translate("&cPlayer not found."));
             return true;
         }
 
         boolean success = islandManager.acceptInvitation(player, owner);
         if (success) {
-            player.sendMessage(ChatColor.GREEN + "Invitation accepted.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aInvitation accepted."));
         } else {
-            player.sendMessage(ChatColor.RED + "You don't have an invitation from that player.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou don't have an invitation from that player."));
         }
         return true;
     }
 
     private boolean handleDenyCommand(Player player, String[] args) {
         if (args.length < 2) {
-            player.sendMessage(ChatColor.RED + "Usage: /is deny <player>");
+            player.sendMessage(CC.translate("&cUsage: /is deny <player>"));
             return true;
         }
 
         Player owner = Bukkit.getPlayer(args[1]);
         if (owner == null) {
-            player.sendMessage(ChatColor.RED + "Player not found.");
+            player.sendMessage(CC.translate("&cPlayer not found."));
             return true;
         }
 
         boolean success = islandManager.denyInvitation(player, owner);
         if (success) {
-            player.sendMessage(ChatColor.GREEN + "Invitation denied.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aInvitation denied."));
         } else {
-            player.sendMessage(ChatColor.RED + "You don't have an invitation from that player.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cYou don't have an invitation from that player."));
         }
         return true;
     }
 
     private boolean handleDeleteCommand(Player player, String[] args) {
         if (args.length < 2 && !player.hasPermission("skyblock.command.delete.others")) {
-            player.sendMessage(ChatColor.RED + "Usage: /is delete <name>");
+            player.sendMessage(CC.translate("&cUsage: /is delete <name>"));
             return true;
         }
 
         String targetName = args.length > 1 ? args[1] : player.getName();
         boolean success = islandManager.deleteIsland(targetName);
         if (success) {
-            player.sendMessage(ChatColor.GREEN + "Island deleted.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &aIsland deleted."));
         } else {
-            player.sendMessage(ChatColor.RED + "Failed to delete the island.");
+            player.sendMessage(CC.translate("&b&lEtheriaMC &7● &cFailed to delete the island or island not found."));
         }
         return true;
     }
 
     private boolean handleManageCommand(Player player) {
-        player.sendMessage(ChatColor.YELLOW + "someone implement this plz lol");
+        if (!player.hasPermission("skyblock.command.manage")) {
+            player.sendMessage(CC.translate("&cYou do not have permission to manage islands."));
+            return true;
+        }
+        player.sendMessage(CC.translate("&b&lEtheriaMC &7● &eComing soon..."));
         return true;
     }
 }

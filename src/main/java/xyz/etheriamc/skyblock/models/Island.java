@@ -20,13 +20,10 @@ public class Island {
     public Island(UUID owner, String name, Location spawnLocation) {
         this.owner = owner;
         this.name = name;
-        this.spawnX = spawnLocation.getX();
-        this.spawnY = spawnLocation.getY();
-        this.spawnZ = spawnLocation.getZ();
-        this.worldName = spawnLocation.getWorld().getName();
+        setSpawnLocation(spawnLocation);
         this.members = new HashSet<>();
         this.invited = new HashSet<>();
-        members.add(owner);
+        members.add(owner); // Add the owner to the members list
     }
 
     public UUID getOwner() {
@@ -40,23 +37,25 @@ public class Island {
     public Location getSpawnLocation() {
         World world = Bukkit.getWorld(worldName);
         if (world == null) {
-            return null;
+            return null; // Return null if the world is not found
         }
         return new Location(world, spawnX, spawnY, spawnZ);
     }
 
     public void setSpawnLocation(Location spawnLocation) {
-        this.spawnX = spawnLocation.getX();
-        this.spawnY = spawnLocation.getY();
-        this.spawnZ = spawnLocation.getZ();
-        this.worldName = spawnLocation.getWorld().getName();
+        if (spawnLocation != null) {
+            this.spawnX = spawnLocation.getX();
+            this.spawnY = spawnLocation.getY();
+            this.spawnZ = spawnLocation.getZ();
+            this.worldName = spawnLocation.getWorld().getName();
+        }
     }
 
-    public void setSpawnLocation(double spawnX, double spawnY, double spawnZ, String spawnWorld) {
+    public void setSpawnLocation(double spawnX, double spawnY, double spawnZ, String worldName) {
         this.spawnX = spawnX;
         this.spawnY = spawnY;
         this.spawnZ = spawnZ;
-        this.worldName = spawnWorld;
+        this.worldName = worldName;
     }
 
     public double getSpawnX() {
@@ -76,22 +75,31 @@ public class Island {
     }
 
     public boolean isMember(Player player) {
-        return members.contains(player.getUniqueId());
+        return player != null && members.contains(player.getUniqueId());
     }
 
     public boolean addMember(Player player) {
-        return members.add(player.getUniqueId());
+        if (player != null) {
+            return members.add(player.getUniqueId());
+        }
+        return false;
     }
 
     public boolean isInvited(Player player) {
-        return invited.contains(player.getUniqueId());
+        return player != null && invited.contains(player.getUniqueId());
     }
 
     public boolean addInvite(Player player) {
-        return invited.add(player.getUniqueId());
+        if (player != null) {
+            return invited.add(player.getUniqueId());
+        }
+        return false;
     }
 
     public boolean removeInvite(Player player) {
-        return invited.remove(player.getUniqueId());
+        if (player != null) {
+            return invited.remove(player.getUniqueId());
+        }
+        return false;
     }
 }
