@@ -15,10 +15,8 @@ public class IslandCommands extends BaseCommand {
     private final IslandManager islandManager;
 
     public IslandCommands() {
-        // Retrieve IslandManager instance from the main plugin
         this.islandManager = Main.getInstance().getIslandManager();
 
-        // Debugging output to verify initialization
         if (this.islandManager == null) {
             Bukkit.getLogger().warning("IslandManager is not available. Check the initialization in the main class.");
         }

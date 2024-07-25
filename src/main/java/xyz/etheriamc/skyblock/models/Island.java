@@ -23,7 +23,7 @@ public class Island {
         setSpawnLocation(spawnLocation);
         this.members = new HashSet<>();
         this.invited = new HashSet<>();
-        members.add(owner); // Add the owner to the members list
+        members.add(owner);
     }
 
     public UUID getOwner() {
@@ -37,7 +37,7 @@ public class Island {
     public Location getSpawnLocation() {
         World world = Bukkit.getWorld(worldName);
         if (world == null) {
-            return null; // Return null if the world is not found
+            return null;
         }
         return new Location(world, spawnX, spawnY, spawnZ);
     }

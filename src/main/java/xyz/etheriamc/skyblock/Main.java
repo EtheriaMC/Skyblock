@@ -31,21 +31,16 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
-        // Initialize PaperCommandManager
         paperCommandManager = new PaperCommandManager(this);
 
-        // Load other necessary components
         loadOthers();
         loadFiles();
         createVoidWorld();
 
-        // Initialize IslandManager
         islandManager = new IslandManager(this, islandWorld);
 
-        // Register commands
         ACFResolver.registerAll();
 
-        // Register events
         getServer().getPluginManager().registerEvents(new EventListener(islandManager), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
     }
