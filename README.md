@@ -25,8 +25,9 @@ Scoreboard - Configurable
 - ~~Add island generation~~
 - ~~Add scoreboard~~
 - ~~Add Player warps~~
+- ~~Add Economy~~
+- ~~Add randon ore generations~~
 - Add tablist - Using [NoSequels Tab API](https://github.com/NoSequel/TabAPI)
-- Add Economy
 - Add Island borders
 - Add Island management
 - Add Shops
@@ -43,4 +44,3 @@ Scoreboard - Configurable
 - Add Bounties
 - Add Auctions
 - Add Bosses (prob not)
-- Add Ore generators
