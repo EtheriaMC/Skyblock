@@ -10,7 +10,7 @@ public class ProfileContextResolver implements ContextResolver<Profile, BukkitCo
 
     @Override
     public Profile getContext(BukkitCommandExecutionContext bukkitCommandExecutionContext) throws InvalidCommandArgument {
-        String firstArg = bukkitCommandExecutionContext.getFirstArg();
+        String firstArg = bukkitCommandExecutionContext.popFirstArg();
         Profile profile = EtheriaAPI.getProfile(firstArg);
 
         if(profile == null) {

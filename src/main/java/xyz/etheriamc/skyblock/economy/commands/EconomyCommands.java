@@ -13,7 +13,6 @@ public class EconomyCommands extends BaseCommand {
 
     @HelpCommand
     @Default
-    @CommandPermission("")
     public void helCommand(Player player) {
         player.sendMessage(CC.translate("&7&m----------------------------------------"));
         player.sendMessage(CC.translate("&c/eco set <name> <balance> &7- Sets the balance of a player."));

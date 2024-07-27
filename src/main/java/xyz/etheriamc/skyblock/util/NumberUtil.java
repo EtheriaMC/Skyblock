@@ -1,5 +1,6 @@
 package xyz.etheriamc.skyblock.util;
 
+import co.aikar.commands.InvalidCommandArgument;
 import lombok.experimental.UtilityClass;
 
 import java.util.regex.Matcher;
@@ -9,7 +10,7 @@ import java.util.regex.Pattern;
 public class NumberUtil {
     private static final Pattern NUMBER_PATTERN = Pattern.compile("(\\d+(\\.\\d+)?)([kKmMbB]?)");
 
-    public static int convertShorthandToInt(String shorthand) {
+    public static int convertShorthandToInt(String shorthand) throws Exception {
         Matcher matcher = NUMBER_PATTERN.matcher(shorthand);
 
         if (matcher.matches()) {
@@ -36,12 +37,12 @@ public class NumberUtil {
             long result = (long) (number * multiplier);
 
             if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE) {
-                throw new IllegalArgumentException("Resulting number is out of Int range: " + result);
+                throw new Exception("Resulting number is out of Int range: " + result);
             }
 
             return (int) result;
         } else {
-            throw new IllegalArgumentException("Invalid shorthand number format: " + shorthand);
+            throw new InvalidCommandArgument("You can only pay using shorthands or numbers!", false);
         }
     }
 }

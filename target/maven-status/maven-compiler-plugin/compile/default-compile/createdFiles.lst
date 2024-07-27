@@ -1,4 +1,5 @@
 xyz/etheriamc/skyblock/profile/Profile.class
+xyz/etheriamc/skyblock/economy/commands/EconomyCommands.class
 xyz/etheriamc/skyblock/profile/ProfileHandler.class
 xyz/etheriamc/skyblock/api/EtheriaAPI.class
 xyz/etheriamc/skyblock/profile/listener/ProfileListener.class

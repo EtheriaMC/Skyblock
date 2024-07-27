@@ -3,7 +3,7 @@ lines: # Supports PlaceholderAPI
   - "&7&m---------------------"
   - "&b&l ▎ &3%player_name%"
   - "&b&l ▎ &fTokens: &3⛃&b0"
-  - "&b&l ▎ &fMoney: &2$&a0"
+  - "&b&l ▎ &fMoney: &2$&a<balance>"
   - "&7&m---------------------"
   - "&b&l ▎ &3Island"
   - "&b&l ▎ &fOwner: &b%player_name%"

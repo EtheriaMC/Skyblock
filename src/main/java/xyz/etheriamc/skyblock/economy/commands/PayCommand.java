@@ -10,15 +10,18 @@ import org.bukkit.entity.Player;
 import xyz.etheriamc.skyblock.api.EtheriaAPI;
 import xyz.etheriamc.skyblock.profile.Profile;
 import xyz.etheriamc.skyblock.util.CC;
+import xyz.etheriamc.skyblock.util.NumberUtil;
 
 public class PayCommand extends BaseCommand {
     @CommandAlias("pay")
     @CommandCompletion("@profiles")
-    public void pay(Player player, @Name("target") Profile target, @Name("amount") Integer amount) {
+    public void pay(Player player, @Name("target") Profile target, @Name("amount") String amountStr) throws Exception {
         Profile profile = EtheriaAPI.getProfile(player.getUniqueId());
         if (profile.equals(target)) {
             throw new InvalidCommandArgument("You cannot pay yourself.");
         }
+
+        int amount = NumberUtil.convertShorthandToInt(amountStr);
 
         if (amount <= 0) {
             throw new InvalidCommandArgument("You cannot pay 0 or a negative amount.", false);

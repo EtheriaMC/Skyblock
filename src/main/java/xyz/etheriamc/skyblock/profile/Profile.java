@@ -16,12 +16,13 @@ public class Profile {
     private UUID uuid;
     private String username;
     private boolean loaded;
-    private int balance;
+    private int balance, tokens;
 
     public Profile(UUID uuid) {
         this.uuid = uuid;
         this.username = Bukkit.getOfflinePlayer(uuid).getName();
         this.balance = 1000;
+        this.tokens = 0;
         this.loaded = false;
 
         this.loadProfile();
@@ -31,6 +32,7 @@ public class Profile {
         this.uuid = Bukkit.getOfflinePlayer(username).getUniqueId();
         this.username = username;
         this.balance = 1000;
+        this.tokens = 0;
         this.loaded = false;
 
         this.loadProfile();
@@ -45,6 +47,12 @@ public class Profile {
                 setBalance(document.getInteger("balance"));
             }
 
+            if(document.getInteger("tokens") == null) {
+                setTokens(0);
+            }else {
+                setTokens(document.getInteger("tokens"));
+            }
+
             setLoaded(true);
         }
     }
@@ -54,6 +62,7 @@ public class Profile {
         document.append("uuid", uuid.toString());
         document.append("username", username);
         document.append("balance", balance);
+        document.append("tokens", tokens);
 
         Main.getInstance().getProfileHandler().getProfilesCollection().replaceOne(Filters.eq("uuid", uuid.toString()), document, new ReplaceOptions().upsert(true));
     }

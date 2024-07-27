@@ -26,7 +26,7 @@ public class BoardAdapter implements AssembleAdapter {
     public List<String> getLines(Player player) {
         List<String> lines = plugin.getScoreboardFile().getStringList("lines");
         return lines.stream()
-                .map(line -> processSpecialCharacters(PlaceholderAPI.setPlaceholders(player, line)))
+                .map(line -> processSpecialCharacters(PlaceholderAPI.setPlaceholders(player, line.replace("<balance>", String.valueOf(Main.getInstance().getProfileHandler().getProfileByUUID(player.getUniqueId()).getBalance())))))
                 .collect(Collectors.toList());
     }
 
