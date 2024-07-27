@@ -21,26 +21,26 @@ Scoreboard - Configurable
 - /setwarp <name> - Create a warp
 - /delwarp <warp> - Delete a warp
 # TODO - ASSIGN YOUR SELF TO TASKS
-~~Add islands~~
-~~Add island generation~~
-~~Add scoreboard~~
-~~Add Player warps~~
-Add tablist - Using [NoSequels Tab API](https://github.com/NoSequel/TabAPI)
-Add Economy
-Add Island borders
-Add Island management
-Add Shops
-Add Leaderboards
-Add Tokens
-Add Minions
-Add special items
-McMMO Support
-Add Farming / Mob / Mining / Fishing tiers
-Add Island upgrades
-Add Lottery
-Add Pets
-Add Challenges
-Add Bounties
-Add Auctions
-Add Bosses (prob not)
-Add Ore generators
+- ~~Add islands~~
+- ~~Add island generation~~
+- ~~Add scoreboard~~
+- ~~Add Player warps~~
+- Add tablist - Using [NoSequels Tab API](https://github.com/NoSequel/TabAPI)
+- Add Economy
+- Add Island borders
+- Add Island management
+- Add Shops
+- Add Leaderboards
+- Add Tokens
+- Add Minions
+- Add special items
+- McMMO Support
+- Add Farming / Mob / Mining / Fishing tiers
+- Add Island upgrades
+- Add Lottery
+- Add Pets
+- Add Challenges
+- Add Bounties
+- Add Auctions
+- Add Bosses (prob not)
+- Add Ore generators
