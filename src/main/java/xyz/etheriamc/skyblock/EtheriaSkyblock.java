@@ -1,7 +1,6 @@
 package xyz.etheriamc.skyblock;
 
 import co.aikar.commands.PaperCommandManager;
-import co.aikar.commands.CommandCompletions;
 import com.mongodb.MongoException;
 import io.github.thatkawaiisam.assemble.Assemble;
 import lombok.Getter;
@@ -20,8 +19,10 @@ import xyz.etheriamc.skyblock.handler.ServerHandler;
 import xyz.etheriamc.skyblock.listeners.EventListener;
 import xyz.etheriamc.skyblock.listeners.PlayerJoinListener;
 import xyz.etheriamc.skyblock.islands.IslandManager;
-import xyz.etheriamc.skyblock.profile.Profile;
 import xyz.etheriamc.skyblock.profile.ProfileHandler;
+import xyz.etheriamc.skyblock.shop.command.ShopCommand;
+import xyz.etheriamc.skyblock.shop.listener.PurchaseListener;
+import xyz.etheriamc.skyblock.shop.listener.SellListener;
 import xyz.etheriamc.skyblock.util.ConfigFile;
 import xyz.etheriamc.skyblock.util.adapters.BoardAdapter;
 import xyz.etheriamc.skyblock.warp.Warp;
@@ -35,8 +36,8 @@ import java.util.List;
 import java.util.Random;
 
 @Getter
-public class Main extends JavaPlugin {
-    @Getter public static Main instance;
+public class EtheriaSkyblock extends JavaPlugin {
+    @Getter public static EtheriaSkyblock instance;
     public IslandManager islandManager;
     public World islandWorld;
     public ConfigFile scoreboardFile, databaseFile;
@@ -63,7 +64,7 @@ public class Main extends JavaPlugin {
         paperCommandManager.registerCommand(new SetWarpCommand());
         paperCommandManager.registerCommand(new DeleteWarpCommand());
         paperCommandManager.registerCommand(new WarpsCommand());
-
+        paperCommandManager.registerCommand(new ShopCommand());
         paperCommandManager.getCommandCompletions().registerCompletion("warps", c -> {
             List<String> toReturn = new ArrayList<>();
             for (Warp warp : getServerHandler().getWarps()) {
@@ -84,6 +85,8 @@ public class Main extends JavaPlugin {
         registerEconomy();
         getServer().getPluginManager().registerEvents(new EventListener(islandManager), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new PurchaseListener(), this);
+        getServer().getPluginManager().registerEvents(new SellListener(), this);
     }
 
     private void loadFiles() {

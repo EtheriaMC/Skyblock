@@ -1,17 +1,14 @@
 package xyz.etheriamc.skyblock.economy.commands;
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.InvalidCommandArgument;
 import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.CommandCompletion;
 import co.aikar.commands.annotation.Name;
 import co.aikar.commands.annotation.Optional;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import xyz.etheriamc.skyblock.api.EtheriaAPI;
+import xyz.etheriamc.skyblock.EtheriaAPI;
 import xyz.etheriamc.skyblock.profile.Profile;
 import xyz.etheriamc.skyblock.util.CC;
-import xyz.etheriamc.skyblock.util.NumberUtil;
 
 public class BalanceCommand extends BaseCommand {
     @CommandAlias("balance|bal|money")

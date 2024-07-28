@@ -7,7 +7,7 @@ import co.aikar.commands.annotation.CommandCompletion;
 import co.aikar.commands.annotation.Name;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import xyz.etheriamc.skyblock.api.EtheriaAPI;
+import xyz.etheriamc.skyblock.EtheriaAPI;
 import xyz.etheriamc.skyblock.profile.Profile;
 import xyz.etheriamc.skyblock.util.CC;
 import xyz.etheriamc.skyblock.util.NumberUtil;

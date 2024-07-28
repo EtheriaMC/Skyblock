@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bson.Document;
 import org.bukkit.Bukkit;
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 
 import java.util.UUID;
 
@@ -39,7 +39,7 @@ public class Profile {
     }
 
     public void loadProfile() {
-        Document document = Main.getInstance().getProfileHandler().getProfilesCollection().find(Filters.eq("uuid", getUuid().toString())).first();
+        Document document = EtheriaSkyblock.getInstance().getProfileHandler().getProfilesCollection().find(Filters.eq("uuid", getUuid().toString())).first();
         if(document != null) {
             if(document.getInteger("balance") == null) {
                 setBalance(0);
@@ -64,6 +64,6 @@ public class Profile {
         document.append("balance", balance);
         document.append("tokens", tokens);
 
-        Main.getInstance().getProfileHandler().getProfilesCollection().replaceOne(Filters.eq("uuid", uuid.toString()), document, new ReplaceOptions().upsert(true));
+        EtheriaSkyblock.getInstance().getProfileHandler().getProfilesCollection().replaceOne(Filters.eq("uuid", uuid.toString()), document, new ReplaceOptions().upsert(true));
     }
 }

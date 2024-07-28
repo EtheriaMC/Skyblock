@@ -1,7 +1,7 @@
 package xyz.etheriamc.skyblock.acf;
 
 import co.aikar.commands.PaperCommandManager;
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 import xyz.etheriamc.skyblock.acf.context.ProfileContextResolver;
 import xyz.etheriamc.skyblock.economy.commands.BalanceCommand;
 import xyz.etheriamc.skyblock.economy.commands.EconomyCommands;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class ACFResolver {
     public static void registerAll() {
-        PaperCommandManager commandManager = Main.getInstance().getPaperCommandManager();
+        PaperCommandManager commandManager = EtheriaSkyblock.getInstance().getPaperCommandManager();
 
         if (commandManager == null) {
             throw new IllegalStateException("PaperCommandManager is not initialized.");
@@ -22,7 +22,7 @@ public class ACFResolver {
 
         commandManager.getCommandContexts().registerContext(Profile.class, new ProfileContextResolver());
         commandManager.getCommandCompletions().registerCompletion("profiles", context ->
-                Main.getInstance().getProfileHandler().getProfiles().stream().map(Profile::getUsername).collect(Collectors.toList()));
+                EtheriaSkyblock.getInstance().getProfileHandler().getProfiles().stream().map(Profile::getUsername).collect(Collectors.toList()));
 
         Arrays.asList(
                 new IslandCommands(),

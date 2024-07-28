@@ -4,7 +4,7 @@ import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 import xyz.etheriamc.skyblock.profile.Profile;
 
 import java.text.DecimalFormat;
@@ -54,7 +54,7 @@ public class EcoHandler implements Economy {
 
     @Override
     public boolean hasAccount(OfflinePlayer player) {
-        return Main.getInstance().getProfileHandler().getProfileByUsername(player.getName()) != null;
+        return EtheriaSkyblock.getInstance().getProfileHandler().getProfileByUsername(player.getName()) != null;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class EcoHandler implements Economy {
 
     @Override
     public double getBalance(OfflinePlayer player) {
-        return Main.getInstance().getProfileHandler().getProfileByUsername(player.getName()).getBalance();
+        return EtheriaSkyblock.getInstance().getProfileHandler().getProfileByUsername(player.getName()).getBalance();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class EcoHandler implements Economy {
 
     @Override
     public boolean has(OfflinePlayer player, double amount) {
-        return Main.getInstance().getProfileHandler().getProfileByUsername(player.getName()).getBalance() >= amount;
+        return EtheriaSkyblock.getInstance().getProfileHandler().getProfileByUsername(player.getName()).getBalance() >= amount;
     }
 
     @Override
@@ -114,7 +114,7 @@ public class EcoHandler implements Economy {
 
     @Override
     public EconomyResponse withdrawPlayer(OfflinePlayer player, double amount) {
-        Profile profile = Main.getInstance().getProfileHandler().getProfileByUsername(player.getName());
+        Profile profile = EtheriaSkyblock.getInstance().getProfileHandler().getProfileByUsername(player.getName());
         int balance = profile.getBalance();
         balance -= (int) amount;
         profile.save();
@@ -138,7 +138,7 @@ public class EcoHandler implements Economy {
 
     @Override
     public EconomyResponse depositPlayer(OfflinePlayer player, double amount) {
-        Profile profile = Main.getInstance().getProfileHandler().getProfileByUsername(player.getName());
+        Profile profile = EtheriaSkyblock.getInstance().getProfileHandler().getProfileByUsername(player.getName());
         int balance = profile.getBalance();
         balance += (int) amount;
         profile.save();

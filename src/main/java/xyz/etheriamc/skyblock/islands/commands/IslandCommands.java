@@ -5,7 +5,7 @@ import co.aikar.commands.annotation.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 import xyz.etheriamc.skyblock.islands.IslandManager;
 import xyz.etheriamc.skyblock.util.CC;
 
@@ -15,7 +15,7 @@ public class IslandCommands extends BaseCommand {
     private final IslandManager islandManager;
 
     public IslandCommands() {
-        this.islandManager = Main.getInstance().getIslandManager();
+        this.islandManager = EtheriaSkyblock.getInstance().getIslandManager();
 
         if (this.islandManager == null) {
             Bukkit.getLogger().warning("IslandManager is not available. Check the initialization in the main class.");
@@ -52,7 +52,7 @@ public class IslandCommands extends BaseCommand {
         }
 
         player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aCreating your island..."));
-        Bukkit.getScheduler().runTask(Main.getInstance(), () -> {
+        Bukkit.getScheduler().runTask(EtheriaSkyblock.getInstance(), () -> {
             boolean success = islandManager.createIsland(player, name);
             if (success) {
                 player.sendMessage(CC.translate("&b&lEtheriaMC &f● &aIsland created!"));

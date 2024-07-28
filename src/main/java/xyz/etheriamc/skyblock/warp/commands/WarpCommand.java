@@ -4,7 +4,7 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 import xyz.etheriamc.skyblock.warp.Warp;
 import xyz.etheriamc.skyblock.util.CC;
 
@@ -25,7 +25,7 @@ public class WarpCommand extends BaseCommand {
         }
 
         Player player = (Player) sender;
-        Warp warp = Main.getInstance().getServerHandler().getWarp(warpName);
+        Warp warp = EtheriaSkyblock.getInstance().getServerHandler().getWarp(warpName);
         if (warp == null) {
             sender.sendMessage(CC.translate("&b&lEtheriaMC &f● &b" + warpName + " &cwarp doesn't exist."));
             return;
@@ -37,7 +37,7 @@ public class WarpCommand extends BaseCommand {
     public List<String> onTabComplete(CommandSender sender, String alias, String[] args) {
         if (args.length == 1) {
             List<String> toReturn = new ArrayList<>();
-            for (Warp warp : Main.getInstance().getServerHandler().getWarps()) {
+            for (Warp warp : EtheriaSkyblock.getInstance().getServerHandler().getWarps()) {
                 toReturn.add(warp.getName());
             }
             return toReturn;

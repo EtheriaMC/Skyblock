@@ -4,7 +4,7 @@ import co.aikar.commands.annotation.CommandAlias;
 import co.aikar.commands.annotation.Name;
 import co.aikar.commands.annotation.Optional;
 import org.bukkit.entity.Player;
-import xyz.etheriamc.skyblock.api.EtheriaAPI;
+import xyz.etheriamc.skyblock.EtheriaAPI;
 import xyz.etheriamc.skyblock.profile.Profile;
 
 public class TokenCommand {

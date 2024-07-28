@@ -1,7 +1,7 @@
 package xyz.etheriamc.skyblock.util.adapters;
 
 import io.github.thatkawaiisam.assemble.AssembleAdapter;
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 import lombok.RequiredArgsConstructor;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BoardAdapter implements AssembleAdapter {
 
-    private final Main plugin;
+    private final EtheriaSkyblock plugin;
 
     private static final String VERTICAL_STRAIGHT_LINE = "\u25CE";
 
@@ -26,7 +26,7 @@ public class BoardAdapter implements AssembleAdapter {
     public List<String> getLines(Player player) {
         List<String> lines = plugin.getScoreboardFile().getStringList("lines");
         return lines.stream()
-                .map(line -> processSpecialCharacters(PlaceholderAPI.setPlaceholders(player, line.replace("<balance>", String.valueOf(Main.getInstance().getProfileHandler().getProfileByUUID(player.getUniqueId()).getBalance())))))
+                .map(line -> processSpecialCharacters(PlaceholderAPI.setPlaceholders(player, line.replace("<balance>", String.valueOf(plugin.getProfileHandler().getProfileByUUID(player.getUniqueId()).getBalance())))))
                 .collect(Collectors.toList());
     }
 

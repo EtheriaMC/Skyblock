@@ -6,7 +6,7 @@ import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 import xyz.etheriamc.skyblock.profile.listener.ProfileListener;
 
 import java.util.ArrayList;
@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class ProfileHandler {
-    @Getter public MongoCollection<Document> profilesCollection = Main.getInstance().getMongoHandler().getDatabase().getCollection("profiles");
+    @Getter public MongoCollection<Document> profilesCollection = EtheriaSkyblock.getInstance().getMongoHandler().getDatabase().getCollection("profiles");
     @Getter public List<Profile> profiles;
 
     public ProfileHandler() {
         profiles = new ArrayList<>();
-        Bukkit.getServer().getPluginManager().registerEvents(new ProfileListener(), Main.getInstance());
+        Bukkit.getServer().getPluginManager().registerEvents(new ProfileListener(), EtheriaSkyblock.getInstance());
     }
 
     public Profile getProfileByUsername(String playerName) {

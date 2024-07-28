@@ -4,7 +4,7 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 import xyz.etheriamc.skyblock.warp.Warp;
 import xyz.etheriamc.skyblock.util.CC;
 
@@ -24,7 +24,7 @@ public class WarpsCommand extends BaseCommand {
         }
 
         Player player = (Player) sender;
-        List<Warp> warps = Main.getInstance().getServerHandler().getWarps();
+        List<Warp> warps = EtheriaSkyblock.getInstance().getServerHandler().getWarps();
 
         if (warps.isEmpty()) {
             player.sendMessage(CC.translate("&b&lEtheriaMC &f● &cThere are no warps, run /setwarp <warp> to create one."));

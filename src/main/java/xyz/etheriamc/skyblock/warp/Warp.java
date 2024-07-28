@@ -1,6 +1,6 @@
 package xyz.etheriamc.skyblock.warp;
 
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.ConfigurationSection;
@@ -16,7 +16,7 @@ public class Warp {
     }
 
     public void save() {
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration config = EtheriaSkyblock.getInstance().getConfig();
         ConfigurationSection warpsSection = config.getConfigurationSection("warps");
 
         if (warpsSection == null) {
@@ -32,17 +32,17 @@ public class Warp {
             warpSection.set("yaw", location.getYaw());
             warpSection.set("pitch", location.getPitch());
 
-            Main.getInstance().saveConfig();
+            EtheriaSkyblock.getInstance().saveConfig();
         }
     }
 
     public void delete() {
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration config = EtheriaSkyblock.getInstance().getConfig();
         ConfigurationSection warpsSection = config.getConfigurationSection("warps");
 
         if (warpsSection != null) {
             warpsSection.set(name, null);
-            Main.getInstance().saveConfig();
+            EtheriaSkyblock.getInstance().saveConfig();
         }
     }
 
@@ -55,7 +55,7 @@ public class Warp {
     }
 
     public static Warp load(String name) {
-        FileConfiguration config = Main.getInstance().getConfig();
+        FileConfiguration config = EtheriaSkyblock.getInstance().getConfig();
         ConfigurationSection warpsSection = config.getConfigurationSection("warps");
 
         if (warpsSection == null) {
@@ -76,7 +76,7 @@ public class Warp {
         float pitch = (float) warpSection.getDouble("pitch");
 
         if (worldName != null) {
-            Location location = new Location(Main.getInstance().getServer().getWorld(worldName), x, y, z, yaw, pitch);
+            Location location = new Location(EtheriaSkyblock.getInstance().getServer().getWorld(worldName), x, y, z, yaw, pitch);
             return new Warp(name, location);
         }
         return null;

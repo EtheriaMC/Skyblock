@@ -1,6 +1,6 @@
 package xyz.etheriamc.skyblock.handler;
 
-import xyz.etheriamc.skyblock.Main;
+import xyz.etheriamc.skyblock.EtheriaSkyblock;
 import xyz.etheriamc.skyblock.warp.Warp;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class ServerHandler {
     }
 
     private void loadWarps() {
-        for (String warpName : Main.getInstance().getConfig().getConfigurationSection("warps").getKeys(false)) {
+        for (String warpName : EtheriaSkyblock.getInstance().getConfig().getConfigurationSection("warps").getKeys(false)) {
             Warp warp = Warp.load(warpName);
             if (warp != null) {
                 warps.add(warp);
