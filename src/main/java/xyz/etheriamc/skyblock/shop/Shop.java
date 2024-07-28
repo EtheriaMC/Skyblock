@@ -1,6 +1,7 @@
 package xyz.etheriamc.skyblock.shop;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import xyz.etheriamc.skyblock.shop.menu.ShopMenu;
 
 import java.util.HashMap;
@@ -33,7 +34,7 @@ public class Shop {
         return itemPrices.keySet();
     }
 
-    public ShopMenu createShopMenu() {
-        return new ShopMenu(this);
+    public ShopMenu createShopMenu(Player player) {
+        return new ShopMenu(this, player);
     }
 }

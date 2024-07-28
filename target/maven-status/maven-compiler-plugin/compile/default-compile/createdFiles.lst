@@ -9,3 +9,4 @@ xyz\etheriamc\skyblock\EtheriaSkyblock$VoidWorldGenerator.class
 xyz\etheriamc\skyblock\profile\listener\ProfileListener.class
 xyz\etheriamc\skyblock\economy\commands\EconomyCommands.class
 xyz\etheriamc\skyblock\database\mongo\MongoHandler.class
+xyz\etheriamc\skyblock\util\StringUtils.class

@@ -4,7 +4,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import xyz.etheriamc.skyblock.shop.Shop;
 import xyz.etheriamc.skyblock.shop.menu.button.ShopPurchaseButton;
 import xyz.etheriamc.skyblock.shop.menu.button.ShopSellButton;
@@ -14,7 +13,7 @@ public class ShopMenu {
     private final Inventory inventory;
     private final Shop shop;
 
-    public ShopMenu(Shop shop) {
+    public ShopMenu(Shop shop, Player player) {
         this.shop = shop;
         this.inventory = Bukkit.createInventory(null, 27, "Shop Menu");
 
@@ -22,7 +21,7 @@ public class ShopMenu {
             inventory.addItem(new ShopPurchaseButton(material).toItemStack());
         }
 
-        inventory.setItem(26, new ShopSellButton().toItemStack());
+        inventory.setItem(26, new ShopSellButton(player).toItemStack());
     }
 
     public void open(Player player) {

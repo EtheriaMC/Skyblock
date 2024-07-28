@@ -54,7 +54,7 @@ public class EtheriaSkyblock extends JavaPlugin {
         mongoHandler = new MongoHandler();
         try {
             mongoHandler.setupMongoDB(databaseFile.getString("mongo.uri"));
-        }catch (MongoException e) {
+        } catch (MongoException e) {
             e.printStackTrace();
         }
 

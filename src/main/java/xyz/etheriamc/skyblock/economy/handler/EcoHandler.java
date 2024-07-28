@@ -34,7 +34,7 @@ public class EcoHandler implements Economy {
 
     @Override
     public String format(double amount) {
-        return new DecimalFormat("0.00").format(amount); // 10.5 -> 10.50
+        return new DecimalFormat("0.00").format(amount);
     }
 
     @Override

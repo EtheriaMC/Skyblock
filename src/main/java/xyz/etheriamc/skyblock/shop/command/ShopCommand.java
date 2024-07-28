@@ -10,6 +10,6 @@ public class ShopCommand extends BaseCommand {
 
     @CommandAlias("shop")
     public void shop(Player player) {
-        Shop.getInstance().createShopMenu().open(player);
+        Shop.getInstance().createShopMenu(player).open(player);
     }
 }
