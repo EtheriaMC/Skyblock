@@ -25,6 +25,7 @@ import xyz.etheriamc.skyblock.shop.listener.PurchaseListener;
 import xyz.etheriamc.skyblock.shop.listener.SellListener;
 import xyz.etheriamc.skyblock.util.ConfigFile;
 import xyz.etheriamc.skyblock.util.adapters.BoardAdapter;
+import xyz.etheriamc.skyblock.util.menu.listener.ButtonListener;
 import xyz.etheriamc.skyblock.warp.Warp;
 import xyz.etheriamc.skyblock.warp.commands.DeleteWarpCommand;
 import xyz.etheriamc.skyblock.warp.commands.SetWarpCommand;
@@ -87,6 +88,7 @@ public class EtheriaSkyblock extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PurchaseListener(), this);
         getServer().getPluginManager().registerEvents(new SellListener(), this);
+        getServer().getPluginManager().registerEvents(new ButtonListener(), this);
     }
 
     private void loadFiles() {
