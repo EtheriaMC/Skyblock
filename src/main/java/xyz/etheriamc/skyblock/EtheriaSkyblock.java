@@ -19,6 +19,10 @@ import xyz.etheriamc.skyblock.handler.ServerHandler;
 import xyz.etheriamc.skyblock.listeners.EventListener;
 import xyz.etheriamc.skyblock.listeners.PlayerJoinListener;
 import xyz.etheriamc.skyblock.islands.IslandManager;
+import xyz.etheriamc.skyblock.pet.commands.PetCommand;
+import xyz.etheriamc.skyblock.pet.commands.PetShopCommand;
+import xyz.etheriamc.skyblock.pet.listener.UsePetListener;
+import xyz.etheriamc.skyblock.pet.petshop.menu.listener.PurchasePetListener;
 import xyz.etheriamc.skyblock.profile.ProfileHandler;
 import xyz.etheriamc.skyblock.shop.command.ShopCommand;
 import xyz.etheriamc.skyblock.shop.listener.PurchaseListener;
@@ -65,6 +69,9 @@ public class EtheriaSkyblock extends JavaPlugin {
         paperCommandManager.registerCommand(new DeleteWarpCommand());
         paperCommandManager.registerCommand(new WarpsCommand());
         paperCommandManager.registerCommand(new ShopCommand());
+        paperCommandManager.registerCommand(new PetCommand());
+        paperCommandManager.registerCommand(new PetShopCommand());
+
         paperCommandManager.getCommandCompletions().registerCompletion("warps", c -> {
             List<String> toReturn = new ArrayList<>();
             for (Warp warp : getServerHandler().getWarps()) {
@@ -77,7 +84,6 @@ public class EtheriaSkyblock extends JavaPlugin {
         createVoidWorld();
 
         serverHandler = new ServerHandler();
-
         islandManager = new IslandManager(this, islandWorld);
         profileHandler = new ProfileHandler();
 
@@ -87,6 +93,8 @@ public class EtheriaSkyblock extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new PurchaseListener(), this);
         getServer().getPluginManager().registerEvents(new SellListener(), this);
+        getServer().getPluginManager().registerEvents(new PurchasePetListener(), this);
+        getServer().getPluginManager().registerEvents(new UsePetListener(), this);
     }
 
     private void loadFiles() {
@@ -133,6 +141,10 @@ public class EtheriaSkyblock extends JavaPlugin {
 
     public PaperCommandManager getPaperCommandManager() {
         return paperCommandManager;
+    }
+
+    public Economy getEconomy() {
+        return getServer().getServicesManager().getRegistration(Economy.class).getProvider();
     }
 
     public class VoidWorldGenerator extends ChunkGenerator {
