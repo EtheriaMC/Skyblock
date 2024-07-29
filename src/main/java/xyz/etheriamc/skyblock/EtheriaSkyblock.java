@@ -4,6 +4,9 @@ import co.aikar.commands.PaperCommandManager;
 import com.mongodb.MongoException;
 import io.github.thatkawaiisam.assemble.Assemble;
 import lombok.Getter;
+import me.vifez.core.Core;
+import me.vifez.core.rank.Rank;
+import me.vifez.core.rank.RankHandler;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -41,7 +44,8 @@ import java.util.Random;
 
 @Getter
 public class EtheriaSkyblock extends JavaPlugin {
-    @Getter public static EtheriaSkyblock instance;
+    @Getter
+    public static EtheriaSkyblock instance;
     public IslandManager islandManager;
     public World islandWorld;
     public ConfigFile scoreboardFile, databaseFile;
@@ -49,6 +53,7 @@ public class EtheriaSkyblock extends JavaPlugin {
     public ServerHandler serverHandler;
     public MongoHandler mongoHandler;
     public ProfileHandler profileHandler;
+    public Rank rankManager;
 
     @Override
     public void onEnable() {
@@ -86,6 +91,7 @@ public class EtheriaSkyblock extends JavaPlugin {
         serverHandler = new ServerHandler();
         islandManager = new IslandManager(this, islandWorld);
         profileHandler = new ProfileHandler();
+        rankManager = fetchRankManager();  // Fetch the RankHandler from Core
 
         ACFResolver.registerAll();
         registerEconomy();
@@ -163,5 +169,24 @@ public class EtheriaSkyblock extends JavaPlugin {
                     ServicePriority.Highest
             );
         }
+    }
+
+    private Rank fetchRankManager() {
+        if (Bukkit.getPluginManager().isPluginEnabled("Core")) {
+            Core corePlugin = (Core) Bukkit.getPluginManager().getPlugin("Core");
+            if (corePlugin != null) {
+                RankHandler rankHandler = corePlugin.getRankHandler();
+                if (rankHandler != null) {
+                    return rankHandler.getDefaultRank();
+                } else {
+                    getLogger().warning("[Skyblock] RankHandler is null");
+                }
+            } else {
+                getLogger().warning("[Skyblock] Glacial instance is null");
+            }
+        } else {
+            getLogger().warning("[Skyblock] Unable to adapt to Glacial");
+        }
+        return null;
     }
 }

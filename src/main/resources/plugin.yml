@@ -1,3 +1,4 @@
 name: SkyBlock
 version: 1.0
 main: xyz.etheriamc.skyblock.EtheriaSkyblock
+depend: [Core]
