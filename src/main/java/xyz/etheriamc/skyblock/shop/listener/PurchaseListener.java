@@ -1,6 +1,5 @@
 package xyz.etheriamc.skyblock.shop.listener;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,13 +36,16 @@ public class PurchaseListener implements Listener {
     private void handlePurchase(Player player, ItemStack itemStack) {
         Profile profile = EtheriaAPI.getProfile(player.getUniqueId());
         int price = Shop.getInstance().getItemPrice(itemStack.getType());
+        int balance = profile.getBalance();
 
-        if (profile.getBalance() >= price) {
-            profile.setBalance(profile.getBalance() - price);
-            player.getInventory().addItem(new ItemStack(itemStack.getType(), 1));
-            player.sendMessage(CC.translate("&aYou have purchased &e1 " + itemStack.getType().name() + " &afor &2$&a" + price));
-        } else {
+        if (balance < price) {
             player.sendMessage(CC.translate("&cYou do not have enough money to purchase this item."));
+            return;
         }
+
+        profile.setBalance(balance - price);
+        player.getInventory().addItem(new ItemStack(itemStack.getType(), 1));
+        String itemType = itemStack.getType().name();
+        player.sendMessage(CC.translate("&aYou have purchased &e1 " + itemType + " &afor &2$&a" + price));
     }
 }

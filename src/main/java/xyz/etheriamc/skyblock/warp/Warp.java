@@ -58,15 +58,13 @@ public class Warp {
         FileConfiguration config = EtheriaSkyblock.getInstance().getConfig();
         ConfigurationSection warpsSection = config.getConfigurationSection("warps");
 
-        if (warpsSection == null) {
+        if (warpsSection == null)
             return null;
-        }
 
         ConfigurationSection warpSection = warpsSection.getConfigurationSection(name);
 
-        if (warpSection == null) {
+        if (warpSection == null)
             return null;
-        }
 
         String worldName = warpSection.getString("world");
         double x = warpSection.getDouble("x");
@@ -75,10 +73,10 @@ public class Warp {
         float yaw = (float) warpSection.getDouble("yaw");
         float pitch = (float) warpSection.getDouble("pitch");
 
-        if (worldName != null) {
-            Location location = new Location(EtheriaSkyblock.getInstance().getServer().getWorld(worldName), x, y, z, yaw, pitch);
-            return new Warp(name, location);
-        }
-        return null;
+        if (worldName == null)
+            return null;
+
+        Location location = new Location(EtheriaSkyblock.getInstance().getServer().getWorld(worldName), x, y, z, yaw, pitch);
+        return new Warp(name, location);
     }
 }

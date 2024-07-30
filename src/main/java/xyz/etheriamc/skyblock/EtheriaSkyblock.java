@@ -172,21 +172,23 @@ public class EtheriaSkyblock extends JavaPlugin {
     }
 
     private Rank fetchRankManager() {
-        if (Bukkit.getPluginManager().isPluginEnabled("Core")) {
-            Core corePlugin = (Core) Bukkit.getPluginManager().getPlugin("Core");
-            if (corePlugin != null) {
-                RankHandler rankHandler = corePlugin.getRankHandler();
-                if (rankHandler != null) {
-                    return rankHandler.getDefaultRank();
-                } else {
-                    getLogger().warning("[Skyblock] RankHandler is null");
-                }
-            } else {
-                getLogger().warning("[Skyblock] Glacial instance is null");
-            }
-        } else {
+        if (!Bukkit.getPluginManager().isPluginEnabled("Core")) {
             getLogger().warning("[Skyblock] Unable to adapt to Glacial");
+            return null;
         }
-        return null;
+
+        Core corePlugin = (Core) Bukkit.getPluginManager().getPlugin("Core");
+        if (corePlugin == null) {
+            getLogger().warning("[Skyblock] Glacial instance is null");
+            return null;
+        }
+
+        RankHandler rankHandler = corePlugin.getRankHandler();
+        if (rankHandler == null) {
+            getLogger().warning("[Skyblock] RankHandler is null");
+            return null;
+        }
+
+        return rankHandler.getDefaultRank();
     }
 }

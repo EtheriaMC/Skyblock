@@ -20,9 +20,9 @@ public class Shop {
     }
 
     public static Shop getInstance() {
-        if (instance == null) {
+        if (instance == null)
             instance = new Shop();
-        }
+
         return instance;
     }
 
