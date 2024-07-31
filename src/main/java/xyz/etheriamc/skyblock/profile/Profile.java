@@ -16,7 +16,9 @@ public class Profile {
     private UUID uuid;
     private String username;
     private boolean loaded;
-    private int balance, tokens;
+    private double balance;
+    private int tokens, coinflipWins, coinflipLosses;
+    private long coinflipWinnings, coinflipLossings;
 
     public Profile(UUID uuid) {
         this.uuid = uuid;
@@ -24,15 +26,22 @@ public class Profile {
         this.balance = 1000;
         this.tokens = 0;
         this.loaded = false;
-
+        this.coinflipLosses = 0;
+        this.coinflipLossings = 0L;
+        this.coinflipWins = 0;
+        this.coinflipWinnings = 0L;
         this.loadProfile();
     }
 
     public Profile(String username) {
         this.uuid = Bukkit.getOfflinePlayer(username).getUniqueId();
         this.username = username;
-        this.balance = 1000;
+        this.balance = 1000D;
         this.tokens = 0;
+        this.coinflipLosses = 0;
+        this.coinflipLossings = 0L;
+        this.coinflipWins = 0;
+        this.coinflipWinnings = 0L;
         this.loaded = false;
 
         this.loadProfile();
@@ -53,6 +62,30 @@ public class Profile {
                 setTokens(document.getInteger("tokens"));
             }
 
+            if(document.getInteger("coinflipWins") == null) {
+                setCoinflipWins(0);
+            }else {
+                setCoinflipWins(document.getInteger("coinflipWins"));
+            }
+
+            if(document.getInteger("coinflipLosses") == null) {
+                setCoinflipLosses(0);
+            }else {
+                setCoinflipLosses(document.getInteger("coinflipLosses"));
+            }
+
+            if(document.getLong("coinflipWinnings") == null) {
+                setCoinflipWinnings(0L);
+            }else {
+                setCoinflipWinnings(document.getLong("coinflipWinnings"));
+            }
+
+            if(document.getLong("coinflipLossings") == null) {
+                setCoinflipLossings(0L);
+            }else {
+                setCoinflipLossings(document.getLong("coinflipLossings"));
+            }
+
             setLoaded(true);
         }
     }
@@ -63,6 +96,10 @@ public class Profile {
         document.append("username", username);
         document.append("balance", balance);
         document.append("tokens", tokens);
+        document.append("coinflipWins", coinflipWins);
+        document.append("coinflipLosses", coinflipLosses);
+        document.append("coinflipWinnings", coinflipWinnings);
+        document.append("coinflipLossings", coinflipLossings);
 
         EtheriaSkyblock.getInstance().getProfileHandler().getProfilesCollection().replaceOne(Filters.eq("uuid", uuid.toString()), document, new ReplaceOptions().upsert(true));
     }

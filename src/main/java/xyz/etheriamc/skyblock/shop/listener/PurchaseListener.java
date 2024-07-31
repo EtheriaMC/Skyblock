@@ -36,7 +36,7 @@ public class PurchaseListener implements Listener {
     private void handlePurchase(Player player, ItemStack itemStack) {
         Profile profile = EtheriaAPI.getProfile(player.getUniqueId());
         int price = Shop.getInstance().getItemPrice(itemStack.getType());
-        int balance = profile.getBalance();
+        double balance = profile.getBalance();
 
         if (balance < price) {
             player.sendMessage(CC.translate("&cYou do not have enough money to purchase this item."));

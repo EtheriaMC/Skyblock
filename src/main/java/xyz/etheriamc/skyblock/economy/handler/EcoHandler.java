@@ -115,8 +115,8 @@ public class EcoHandler implements Economy {
     @Override
     public EconomyResponse withdrawPlayer(OfflinePlayer player, double amount) {
         Profile profile = EtheriaSkyblock.getInstance().getProfileHandler().getProfileByUsername(player.getName());
-        int balance = profile.getBalance();
-        balance -= (int) amount;
+        double balance = profile.getBalance();
+        profile.setBalance(balance - (int) amount);
         profile.save();
         return new EconomyResponse(amount, profile.getBalance(), EconomyResponse.ResponseType.SUCCESS, "");
     }
@@ -139,8 +139,8 @@ public class EcoHandler implements Economy {
     @Override
     public EconomyResponse depositPlayer(OfflinePlayer player, double amount) {
         Profile profile = EtheriaSkyblock.getInstance().getProfileHandler().getProfileByUsername(player.getName());
-        int balance = profile.getBalance();
-        balance += (int) amount;
+        double balance = profile.getBalance();
+        profile.setBalance(balance + (int) amount);
         profile.save();
         return new EconomyResponse(amount, profile.getBalance(), EconomyResponse.ResponseType.SUCCESS, "");
     }
