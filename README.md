@@ -5,6 +5,15 @@ This is EtheriaMCs skyblock core designed to be extremely performant while also 
 # Why did we open source this project?
 We decided to sunset our Skyblock gamemode because the market is crowded, and it's tough to attract players with so many similar servers out there. Instead, we're focusing on developing new, custom game modes that are more unique. Rather than letting this Skyblock project go to waste, we thought it would be better to share it with the community and see what others can do with it.
 
+# PLEASE NOTE:
+This code is quite shit, We wasn't really motivated that much to write our best code, Some of the island commands barely work like inviting people, visiting other players islands, and the /island manage isn't implemented, We have kept this as a thing and not fixed them all because we want this source code to be used as a base so each fork has different implimentation instead of everything being the same.
+
+Also, The island generation 100% needs recoding, I was gonna make a custom schematic system but the maths is horrible, If you're going to plan on recoding it I don't recommend using FAWE because it'll just look like every other skyblock core, If you are capable you should make a custom schematic system, if you do plan on the schematic system make sure to be careful with the data because too much can make a massive file aka not good xD
+
+The shop system is also TERRIBLE I was kinda going to make a base but I couldn't be bothered to continue that I was just going to be using a shop plugin like [EconomyShopGUI](https://www.spigotmc.org/resources/economyshopgui.69927/) or [ShopPlus](https://www.spigotmc.org/resources/shopplus-advanced-gui-shop.47233/) idk
+
+Enjoy using this core as a base lol
+
 # Features:
 Island management - Could do with a recode tbh
 Scoreboard - Configurable
@@ -30,7 +39,7 @@ Scoreboard - Configurable
 - ~~Add Player warps~~
 - ~~Add Economy~~
 - ~~Add randon ore generations~~
-- Add tablist - Using [NoSequels Tab API](https://github.com/NoSequel/TabAPI)
+- Add tablist
 - Add Island borders
 - Add Island management
 - Add Shops
