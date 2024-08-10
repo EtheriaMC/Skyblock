@@ -14,10 +14,6 @@ The shop system is also TERRIBLE I was kinda going to make a base but I couldn't
 
 Enjoy using this core as a base lol
 
-# Features:
-Island management - Could do with a recode tbh
-Scoreboard - Configurable
-
 # Commands
 - /is create <name> - Create a new island.
 - /is delete <name> - Delete your island.
