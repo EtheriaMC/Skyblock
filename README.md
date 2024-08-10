@@ -2,6 +2,9 @@
 
 This is EtheriaMCs skyblock core designed to be extremely performant while also providing all the features that a skyblock server would need!
 
+# Why did we open source this project?
+We decided to sunset our Skyblock gamemode because the market is crowded, and it's tough to attract players with so many similar servers out there. Instead, we're focusing on developing new, custom game modes that are more unique. Rather than letting this Skyblock project go to waste, we thought it would be better to share it with the community and see what others can do with it.
+
 # Features:
 Island management - Could do with a recode tbh
 Scoreboard - Configurable
