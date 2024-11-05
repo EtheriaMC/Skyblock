@@ -1,2 +1,2 @@
 mongo:
-  uri: "mongodb://admin:potslol123%40321%40123%40321potslol@64.20.35.26:25649/skyblock"
+  uri: "mongodb://username:password@127.0.2.1:25565/etheria"
